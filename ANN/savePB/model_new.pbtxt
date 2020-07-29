@@ -1,0 +1,429 @@
+node {
+  name: "image"
+  op: "Placeholder"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 8
+        }
+        dim {
+          size: 40
+        }
+        dim {
+          size: 448
+        }
+        dim {
+          size: 3
+        }
+      }
+    }
+  }
+}
+node {
+  name: "conv1"
+  op: "Conv2D"
+  input: "image"
+  input: "Variable"
+  attr {
+    key: "dilations"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "explicit_paddings"
+    value {
+      list {
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "SAME"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "BiasAdd"
+  op: "BiasAdd"
+  input: "conv1"
+  input: "Variable_1"
+}
+node {
+  name: "LeakyRelu"
+  op: "LeakyRelu"
+  input: "BiasAdd"
+  attr {
+    key: "alpha"
+    value {
+      f: 0.10000000149011612
+    }
+  }
+}
+node {
+  name: "AvgPool"
+  op: "AvgPool"
+  input: "LeakyRelu"
+  attr {
+    key: "ksize"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "VALID"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "conv2"
+  op: "Conv2D"
+  input: "AvgPool"
+  input: "Variable_2"
+  attr {
+    key: "dilations"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "explicit_paddings"
+    value {
+      list {
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "SAME"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "BiasAdd_1"
+  op: "BiasAdd"
+  input: "conv2"
+  input: "Variable_3"
+}
+node {
+  name: "LeakyRelu_1"
+  op: "LeakyRelu"
+  input: "BiasAdd_1"
+  attr {
+    key: "alpha"
+    value {
+      f: 0.10000000149011612
+    }
+  }
+}
+node {
+  name: "MaxPool"
+  op: "MaxPool"
+  input: "LeakyRelu_1"
+  attr {
+    key: "ksize"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "VALID"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "conv3"
+  op: "Conv2D"
+  input: "MaxPool"
+  input: "Variable_4"
+  attr {
+    key: "dilations"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "explicit_paddings"
+    value {
+      list {
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "SAME"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "BiasAdd_2"
+  op: "BiasAdd"
+  input: "conv3"
+  input: "Variable_5"
+}
+node {
+  name: "LeakyRelu_2"
+  op: "LeakyRelu"
+  input: "BiasAdd_2"
+  attr {
+    key: "alpha"
+    value {
+      f: 0.10000000149011612
+    }
+  }
+}
+node {
+  name: "MaxPool_1"
+  op: "MaxPool"
+  input: "LeakyRelu_2"
+  attr {
+    key: "ksize"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "VALID"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 2
+        i: 2
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "conv4"
+  op: "Conv2D"
+  input: "MaxPool_1"
+  input: "Variable_6"
+  attr {
+    key: "dilations"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "explicit_paddings"
+    value {
+      list {
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "VALID"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "BiasAdd_3"
+  op: "BiasAdd"
+  input: "conv4"
+  input: "Variable_7"
+}
+node {
+  name: "LeakyRelu_3"
+  op: "LeakyRelu"
+  input: "BiasAdd_3"
+  attr {
+    key: "alpha"
+    value {
+      f: 0.10000000149011612
+    }
+  }
+}
+node {
+  name: "conv5"
+  op: "Conv2D"
+  input: "LeakyRelu_3"
+  input: "Variable_8"
+  attr {
+    key: "dilations"
+    value {
+      list {
+        i: 1
+        i: 1
+        i: 1
+        i: 1
+      }
+    }
+  }
+  attr {
+    key: "explicit_paddings"
+    value {
+      list {
+      }
+    }
+  }
+  attr {
+    key: "padding"
+    value {
+      s: "VALID"
+    }
+  }
+  attr {
+    key: "strides"
+    value {
+      list {
+        i: 1
+        i: 3
+        i: 3
+        i: 1
+      }
+    }
+  }
+}
+node {
+  name: "BiasAdd_4"
+  op: "BiasAdd"
+  input: "conv5"
+  input: "Variable_9"
+}
+node {
+  name: "LeakyRelu_4"
+  op: "LeakyRelu"
+  input: "BiasAdd_4"
+  attr {
+    key: "alpha"
+    value {
+      f: 0.10000000149011612
+    }
+  }
+}
+node {
+  name: "Reshape"
+  op: "Reshape"
+  input: "LeakyRelu_4"
+  input: "Reshape/shape"
+}
+node {
+  name: "result"
+  op: "Sigmoid"
+  input: "Reshape"
+}
