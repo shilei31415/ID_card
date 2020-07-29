@@ -1,3 +1,0 @@
-/home/shilei/CLionProjects/ID_card/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/shilei/CLionProjects/ID_card/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/shilei/CLionProjects/ID_card/cmake-build-debug/CMakeFiles/ID_card.dir
